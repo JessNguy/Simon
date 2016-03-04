@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
         {
 
             Form f = this.FindForm();
-            //f.Controls.Remove(this);
+            f.Controls.Remove(this);
 
             GameScreen gs = new GameScreen();
             this.Controls.Add(gs);

@@ -42,83 +42,100 @@ namespace WindowsFormsApplication1
 
         public void computerTurn() // custom method declaration
         {
+            labelTurn.Text = "Computer's Turn";
+
             //generate a number for the pattern
             Random rand = new Random();
             int randNumPattern = rand.Next(0, 4);
 
-            labelTurn.Text = Convert.ToString(randNumPattern);
+            labelNumber.Text += Convert.ToString(randNumPattern);
+
             //add it to the list
             patternColourComputer.Add(randNumPattern);
 
             //read through the list
-            {
-                //checking what the number in the computer list is
             for (int x = 0; x < patternColourComputer.Count; x++)
-                if (patternColourComputer[x] == 0)
+            {
+                switch (patternColourComputer[x])
                 {
-                    //light up red
+                    case 0:
+                        buttonRed.BackColor = brightColours[0];
+                        buttonRed.Refresh();
+                        Thread.Sleep(500);
+                        buttonRed.BackColor = darkColours[0];
+                        Refresh();
 
-                    buttonRed.BackColor = brightColours[0];
-                    Refresh();
-                    Thread.Sleep(500);
-                    buttonRed.BackColor = darkColours[0];
-                    Refresh();
+                        break;
+                    case 1:
+                        buttonGreen.BackColor = brightColours[1];
+                        buttonGreen.Refresh();
+                        Thread.Sleep(500);
+                        buttonGreen.BackColor = darkColours[1];
+                        Refresh();
+
+                        break;
+                    case 2:
+                        buttonYellow.BackColor = brightColours[2];
+                        buttonYellow.Refresh();
+                        Thread.Sleep(500);
+                        buttonYellow.BackColor = darkColours[2];
+                        Refresh();
+
+                        break;
+                    case 3:
+                        buttonBlue.BackColor = brightColours[3];
+                        buttonBlue.Refresh();
+                        Thread.Sleep(500);
+                        buttonBlue.BackColor = darkColours[3];
+                        Refresh();
+
+                        break;
+
+                    default:
+                        break;
                    
                 }
-                else if (patternColourComputer[x] == 1)
-                {
-                    //light up green
-
-                    buttonGreen.BackColor = brightColours[1];
-                    Refresh();
-                    Thread.Sleep(500);
-                        buttonGreen.BackColor = darkColours[1];
-                    Refresh();
-
-                }
-                else if (patternColourComputer[x] == 2)
-                {
-                    //light up yellow
-
-                    buttonYellow.BackColor = brightColours[2];
-                    Refresh();
-                    Thread.Sleep(500);
-                    buttonYellow.BackColor = darkColours[2];
-                    Refresh();
-
-                }
-                else if (patternColourComputer[x] == 3)
-                {
-                    //light up blue
-
-                    buttonBlue.BackColor = brightColours[3];
-                    Refresh();
-                    Thread.Sleep(500);
-                    buttonBlue.BackColor = darkColours[3];
-                    Refresh();
-
-                }
                 
+                //clear player's index list of guesses
+                patternGuessUser.Clear();
+                playerMove = true;
+
+                labelTurn.Text = "Player's Turn";
             }
         }
         public void playerTurn() // custom method declaration
         {
-            //clear player's index list of guesses
-            patternGuessUser.Clear();
-
             //check to see the button click is correct with the computer pattern
             for (int x = 0; x < patternGuessUser.Count; x++)
             {
                 //if player guess is the same as computer pattern
                 if(patternGuessUser[x] == patternColourComputer[x])
                 {
-                    
+                    labelMessage.Text = "Correct!";
+                    Refresh();
+                    Thread.Sleep(500);
+                    labelMessage.Text = " ";
                 }
                 else if (patternGuessUser[x] != patternColourComputer[x])
                 {
+                    labelMessage.Text = "Incorrect";
+                    Refresh();
+                    Thread.Sleep(500);
+                    labelMessage.Text = " ";
+                    Thread.Sleep(1500);
+
+                    //change to gameover screen
+                    Form f = this.FindForm();
+                    f.Controls.Remove(this);
+
+                    GameOver go = new GameOver();
+                    f.Controls.Add(go);
 
                 }
+
             }
+            playerMove = false;
+            computerTurn();
       
         }
 
@@ -132,23 +149,71 @@ namespace WindowsFormsApplication1
 
         private void buttonRed_Click(object sender, EventArgs e)
         {
-            patternGuessUser.Add(0);
+            if (playerMove == true)
+            {
+                patternGuessUser.Add(0);
+
+                //change colours
+                buttonRed.BackColor = brightColours[0];
+                Refresh();
+                Thread.Sleep(500);
+                buttonRed.BackColor = darkColours[0];
+                Refresh();
+
+                playerTurn();
+            }
 
         }
 
         private void buttonGreen_Click(object sender, EventArgs e)
         {
-            patternGuessUser.Add(1);
+            if (playerMove == true)
+            {
+                patternGuessUser.Add(1);
+
+                //change colours
+                buttonGreen.BackColor = brightColours[1];
+                Refresh();
+                Thread.Sleep(500);
+                buttonGreen.BackColor = darkColours[1];
+                Refresh();
+
+                playerTurn();
+            }
         }
 
         private void buttonYellow_Click(object sender, EventArgs e)
         {
-            patternGuessUser.Add(2);
+            if (playerMove == true)
+            {
+                patternGuessUser.Add(2);
+
+                //change colours
+                buttonYellow.BackColor = brightColours[2];
+                Refresh();
+                Thread.Sleep(500);
+                buttonYellow.BackColor = darkColours[2];
+                Refresh();
+
+                playerTurn();
+            }
         }
 
         private void buttonBlue_Click(object sender, EventArgs e)
         {
-            patternGuessUser.Add(3);
+            if (playerMove == true)
+            {
+                patternGuessUser.Add(3);
+
+                //change colours
+                buttonBlue.BackColor = brightColours[3];
+                Refresh();
+                Thread.Sleep(500);
+                buttonBlue.BackColor = darkColours[3];
+                Refresh();
+
+                playerTurn();
+            }
         }
     }
 }

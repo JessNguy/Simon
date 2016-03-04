@@ -34,6 +34,7 @@
             this.buttonYellow = new System.Windows.Forms.Button();
             this.buttonBlue = new System.Windows.Forms.Button();
             this.labelMessage = new System.Windows.Forms.Label();
+            this.labelNumber = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelTurn
@@ -112,11 +113,22 @@
             this.labelMessage.TabIndex = 5;
             this.labelMessage.Text = "label1";
             // 
+            // labelNumber
+            // 
+            this.labelNumber.AutoSize = true;
+            this.labelNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumber.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelNumber.Location = new System.Drawing.Point(19, 16);
+            this.labelNumber.Name = "labelNumber";
+            this.labelNumber.Size = new System.Drawing.Size(0, 20);
+            this.labelNumber.TabIndex = 6;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.labelNumber);
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.buttonBlue);
             this.Controls.Add(this.buttonYellow);
@@ -139,5 +151,6 @@
         private System.Windows.Forms.Button buttonYellow;
         private System.Windows.Forms.Button buttonBlue;
         private System.Windows.Forms.Label labelMessage;
+        private System.Windows.Forms.Label labelNumber;
     }
 }
