@@ -15,6 +15,24 @@ namespace WindowsFormsApplication1
         public GameOver()
         {
             InitializeComponent();
+            int rounds = Form1.patternColourComputer.Count() - 1;
+            labelRounds.Text = "You completed " + Convert.ToString(rounds) + " Rounds.";
+            
+        }
+
+     
+        private void buttonAgain_Click(object sender, EventArgs e)
+        {
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+
+            GameScreen gs = new GameScreen();
+            f.Controls.Add(gs);
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

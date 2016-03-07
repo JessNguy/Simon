@@ -44,9 +44,8 @@
             this.labelTurn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.labelTurn.Location = new System.Drawing.Point(124, 54);
             this.labelTurn.Name = "labelTurn";
-            this.labelTurn.Size = new System.Drawing.Size(51, 20);
+            this.labelTurn.Size = new System.Drawing.Size(0, 20);
             this.labelTurn.TabIndex = 0;
-            this.labelTurn.Text = "label1";
             // 
             // buttonRed
             // 
@@ -109,9 +108,8 @@
             this.labelMessage.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.labelMessage.Location = new System.Drawing.Point(39, 103);
             this.labelMessage.Name = "labelMessage";
-            this.labelMessage.Size = new System.Drawing.Size(51, 20);
+            this.labelMessage.Size = new System.Drawing.Size(0, 20);
             this.labelMessage.TabIndex = 5;
-            this.labelMessage.Text = "label1";
             // 
             // labelNumber
             // 

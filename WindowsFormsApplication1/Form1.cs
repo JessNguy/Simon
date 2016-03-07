@@ -13,7 +13,8 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        
+        public static List<int> patternColourComputer = new List<int>();
+        public static List<int> patternGuessUser = new List<int>();
 
         public Form1()
         {

@@ -15,8 +15,7 @@ namespace WindowsFormsApplication1
         Color[] brightColours = new Color[4];
         Color[] darkColours = new Color[4];
 
-        List<int> patternColourComputer = new List<int>();
-        List<int> patternGuessUser = new List<int>();
+        
 
         bool playerMove = false;
 
@@ -24,7 +23,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
 
-            patternColourComputer.Clear();
+            Form1.patternColourComputer.Clear();
             //Array
 
             brightColours[0] = Color.Red;
@@ -51,12 +50,12 @@ namespace WindowsFormsApplication1
             labelNumber.Text += Convert.ToString(randNumPattern);
 
             //add it to the list
-            patternColourComputer.Add(randNumPattern);
+            Form1.patternColourComputer.Add(randNumPattern);
 
             //read through the list
-            for (int x = 0; x < patternColourComputer.Count; x++)
+            for (int x = 0; x < Form1.patternColourComputer.Count; x++)
             {
-                switch (patternColourComputer[x])
+                switch (Form1.patternColourComputer[x])
                 {
                     case 0:
                         buttonRed.BackColor = brightColours[0];
@@ -95,9 +94,9 @@ namespace WindowsFormsApplication1
                         break;
                    
                 }
-                
+
                 //clear player's index list of guesses
-                patternGuessUser.Clear();
+                Form1.patternGuessUser.Clear();
                 playerMove = true;
 
                 labelTurn.Text = "Player's Turn";
@@ -105,38 +104,41 @@ namespace WindowsFormsApplication1
         }
         public void playerTurn() // custom method declaration
         {
-            //check to see the button click is correct with the computer pattern
-            for (int x = 0; x < patternGuessUser.Count; x++)
+            if (Form1.patternGuessUser.Count == Form1.patternColourComputer.Count)
             {
-                //if player guess is the same as computer pattern
-                if(patternGuessUser[x] == patternColourComputer[x])
+                //check to see the button click is correct with the computer pattern
+                for (int x = 0; x < Form1.patternGuessUser.Count; x++)
                 {
-                    labelMessage.Text = "Correct!";
-                    Refresh();
-                    Thread.Sleep(500);
-                    labelMessage.Text = " ";
+                    //if player guess is the same as computer pattern
+                    if (Form1.patternGuessUser[x] == Form1.patternColourComputer[x])
+                    {
+                        labelMessage.Text = "Correct!";
+                        Refresh();
+                        Thread.Sleep(500);
+                        labelMessage.Text = " ";
+                    }
+                    else if (Form1.patternGuessUser[x] != Form1.patternColourComputer[x])
+                    {
+                        labelMessage.Text = "Incorrect";
+                        Refresh();
+                        Thread.Sleep(500);
+                        labelMessage.Text = " ";
+                        Thread.Sleep(1500);
+
+                        //change to gameover screen
+                        Form f = this.FindForm();
+                        f.Controls.Remove(this);
+
+                        GameOver go = new GameOver();
+                        f.Controls.Add(go);
+
+                    }
+
                 }
-                else if (patternGuessUser[x] != patternColourComputer[x])
-                {
-                    labelMessage.Text = "Incorrect";
-                    Refresh();
-                    Thread.Sleep(500);
-                    labelMessage.Text = " ";
-                    Thread.Sleep(1500);
 
-                    //change to gameover screen
-                    Form f = this.FindForm();
-                    f.Controls.Remove(this);
-
-                    GameOver go = new GameOver();
-                    f.Controls.Add(go);
-
-                }
-
+                playerMove = false;
+                computerTurn();
             }
-            playerMove = false;
-            computerTurn();
-      
         }
 
       
@@ -151,7 +153,7 @@ namespace WindowsFormsApplication1
         {
             if (playerMove == true)
             {
-                patternGuessUser.Add(0);
+                Form1.patternGuessUser.Add(0);
 
                 //change colours
                 buttonRed.BackColor = brightColours[0];
@@ -169,7 +171,7 @@ namespace WindowsFormsApplication1
         {
             if (playerMove == true)
             {
-                patternGuessUser.Add(1);
+                Form1.patternGuessUser.Add(1);
 
                 //change colours
                 buttonGreen.BackColor = brightColours[1];
@@ -186,7 +188,7 @@ namespace WindowsFormsApplication1
         {
             if (playerMove == true)
             {
-                patternGuessUser.Add(2);
+                Form1.patternGuessUser.Add(2);
 
                 //change colours
                 buttonYellow.BackColor = brightColours[2];
@@ -203,7 +205,7 @@ namespace WindowsFormsApplication1
         {
             if (playerMove == true)
             {
-                patternGuessUser.Add(3);
+                Form1.patternGuessUser.Add(3);
 
                 //change colours
                 buttonBlue.BackColor = brightColours[3];
